@@ -7,7 +7,7 @@ public class MinesweeperSolution {
 
     public static void main(String[] unused) {
 
-        StdOut.println("Welcome to Minesweeper!");
+        StdOut.println("Its mining time.");
         int NUM_MINES = 10;
         boolean minefield[][] = new boolean[10][10];
         boolean uncovered[][] = new boolean[10][10];
@@ -18,11 +18,17 @@ public class MinesweeperSolution {
 
         drawMinefield(minefield, uncovered);
 
+        int lose = 0;
+
         // Event loop
         for (;;) {
-            handleMouseClick(minefield, uncovered);
+            lose = handleMouseClick(minefield, uncovered);
             drawMinefield(minefield, uncovered);
-            if (hasWon(minefield, uncovered)) {
+            if (lose == 1) {
+                break;
+            }
+            if (hasWon(minefield,
+                    uncovered)) {
                 StdOut.println("You won!");
                 break;
             }
@@ -39,7 +45,7 @@ public class MinesweeperSolution {
         return true;
     }
 
-    public static void handleMouseClick(boolean[][] minefield, boolean[][] uncovered) {
+    public static int handleMouseClick(boolean[][] minefield, boolean[][] uncovered) {
         while (!StdDraw.isMousePressed()) {
             // do nothing
         }
@@ -55,7 +61,9 @@ public class MinesweeperSolution {
 
         if (minefield[x][y]) {
             StdOut.println("BOOM");
+            return 1;
         }
+        return 0;
     }
 
     /**
