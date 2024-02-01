@@ -1,5 +1,7 @@
 import java.awt.*;
 
+// MineSweeperSolution.java is the working code! This one was a test to see if another solution would work
+
 public class minesweeper {
 
     public static void main(String[] args) {
